@@ -12,7 +12,7 @@ from __future__ import division
 from __future__ import print_function
 from os import path
 import argparse
-import cPickle
+import pickle
 import datetime
 import numpy as np
 import sys
@@ -142,7 +142,7 @@ def main():
     # Write to file
     print("Pickling paths:", paths_pkl_fn)
     f = open(paths_pkl_fn, "wb")
-    cPickle.dump(paths, f, -1)
+    pickle.dump(paths, f, -1)
     f.close()
     # if args.binary_dists:
     #     print("Writing distances to binary file:", distances_fn)

@@ -12,8 +12,8 @@ from os import path
 import numpy as np
 import sys
 
-basedir = path.join(path.dirname(__file__), "..")
-sys.path.append(basedir)
+#basedir = path.join(path.dirname(__file__), "..")
+#sys.path.append(basedir)
 
 from speech_dtw import _dtw
 
@@ -60,7 +60,7 @@ def dtw_sweep_min(query_seq, search_seq, n_step=3):
     return min_cost
 
 
-def parallel_dtw_sweep_min(query_list, search_list, n_step=3, n_cpus=1):
+def parallel_dtw_sweep_min(query_list, search_list, n_step=3, n_cpus=1, verbose=0):
     """
     Calculate the minimum DTW cost for a list of queries and search sequences.
 
@@ -69,7 +69,7 @@ def parallel_dtw_sweep_min(query_list, search_list, n_step=3, n_cpus=1):
     `search_list`.
     """
     from joblib import Parallel, delayed
-    costs = Parallel(n_jobs=n_cpus, max_nbytes=None)(delayed
+    costs = Parallel(n_jobs=n_cpus, max_nbytes=None, verbose=verbose)(delayed
         (dtw_sweep_min)(query_seq, search_seq) for query_seq in query_list for
         search_seq in search_list
         )

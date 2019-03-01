@@ -10,8 +10,13 @@ import numpy as np
 import re
 
 
-def read_kaldi_ark(ark_fn):
-    """Read a Kaldi archive (in text format) and return it in a dict."""
+def read_kaldi_ark(ark_fn, retain_filter=None):
+    """
+    Read a Kaldi archive (in text format) and return it in a dict.
+    'retain_filter' is an optional list (or set) of utterance IDs
+    which will be retained. Utterances not part of the list are
+    discarded.
+    """
     ark_dict = {}
     lines = open(ark_fn).readlines()
     for line in lines:
@@ -22,7 +27,11 @@ def read_kaldi_ark(ark_fn):
         elif "]" in line:
             line = line.strip("]")
             cur_mat.append([float(i) for i in line.split()])
-            ark_dict[cur_id] = np.array(cur_mat)
+            if retain_filter:
+                if cur_id in retain_filter:
+                    ark_dict[cur_id] = np.array(cur_mat)
+            else:
+                ark_dict[cur_id] = np.array(cur_mat)
         else:
             cur_mat.append([float(i) for i in line.split()])
     return ark_dict

@@ -60,7 +60,7 @@ def main():
     # print("Feature vector dimensions:", all_features.shape[1])
 
     print("Writing feature vectors to file:", args.npz_fn)
-    np.savez(args.npz_fn, **kaldi_ark)
+    np.savez_compressed(args.npz_fn, **kaldi_ark)
 
     print(str(datetime.datetime.now()))
 

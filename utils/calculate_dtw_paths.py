@@ -41,7 +41,7 @@ def check_argv():
         "by default this should be a Kaldi archive in text format"
         )
     parser.add_argument(
-        "paths_pkl_fn", help="a list of paths are pickeld to this file "
+        "paths_pkl_fn", help="a list of paths are pickled to this file "
         "in the same order as which the pairs occur in `pairs_fn`; "
         "a single path is a list of tuples of frame pairs"
         )
@@ -72,10 +72,8 @@ def check_argv():
 def read_pairs(pairs_fn):
     """Return a list of tuples with pairs of utterance IDs."""
     pairs = []
-    for line in open(pairs_fn):
-        utt_1, utt_2 = line.split()
-        pairs.append((utt_1, utt_2))
-    return pairs
+    with open(pairs_fn, "r") as fid:
+        return [tuple(line.split()) for line in fid]
 
 
 #-----------------------------------------------------------------------------#

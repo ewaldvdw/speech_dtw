@@ -1,9 +1,9 @@
 """
 Kaldi utility functions.
 
-Author: Herman Kamper
+Author: Herman Kamper, Ewald van der Westhuizen
 Contact: h.kamper@sms.ed.ac.uk
-Date: 2014
+Date: 2014, 2019
 """
 
 import numpy as np

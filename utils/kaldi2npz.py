@@ -3,7 +3,7 @@
 """
 Write all matrices in a Kaldi archive (text format) to Numpy .npz format.
 
-Author: Herman Kamper
+Author: Herman Kamper, Ewald van der Westhuizen
 Contact: kamperh@gmail.com
 Date: 2014-2015, 2019
 """
